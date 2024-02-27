@@ -223,6 +223,10 @@ const fetch_tracks = async (req, res) => {
     });
 
     // Return the search results
+    // console.log(tracks)
+    // tracks.items.forEach(element => {
+      
+    // });
     res.json(tracks);
   } catch (error) {
     console.error("Error searching for track:", error);
