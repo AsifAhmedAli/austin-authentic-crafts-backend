@@ -31,18 +31,19 @@ const upload = multer({ storage: storage });
 const new_request = (req, res) => {
   // try {
   // const { name, email, insta_url, songinput } = req.body;
+
+  const from_number = process.env.from_number;
   const accountSid = process.env.TWILIO_ACCOUNT_SID;
   const authToken = process.env.TWILIO_AUTH_TOKEN;
-  const from_number = process.env.from_number;
-  // console.log(accountSid);
-  // console.log(authToken);
-  // console.log(from_number);
+  const client = require('twilio')(accountSid, authToken);
 
-  const client = require("twilio")(accountSid, authToken);
-
-  client.messages
-    .create({ from: from_number, body: "Hi there", to: "+923331871434" })
-    .then((message) => console.log(message.sid));
+client.messages
+  .create({
+     body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
+     from: from_number,
+     to: '+923331871434'
+   })
+  .then(message => console.log(message.sid));
   return res.status(200).json({ msg: "sent" });
   // } catch (error) {
   // console.error("Error in addPhoneNumber:", error);
