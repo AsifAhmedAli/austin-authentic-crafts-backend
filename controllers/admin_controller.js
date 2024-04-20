@@ -36,15 +36,15 @@ const new_request = (req, res) => {
   const accountSid = process.env.TWILIO_ACCOUNT_SID;
   const authToken = process.env.TWILIO_AUTH_TOKEN;
   const client = require('twilio')(accountSid, authToken);
-
+var msgid;
 client.messages
   .create({
      body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
      from: from_number,
      to: '+14086934608'
    })
-  .then(message => console.log(message.sid));
-  return res.status(200).json({ msg: "sent", mid: message.sid});
+  .then(msgid = message.sid);
+    return res.status(200).json({ msg: "sent", mid: msgid})
   // } catch (error) {
   // console.error("Error in addPhoneNumber:", error);
   // res.status(500).json({ error: "Internal Server Error" });
