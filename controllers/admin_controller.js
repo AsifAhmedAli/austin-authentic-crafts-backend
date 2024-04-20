@@ -37,6 +37,7 @@ const new_request = (req, res) => {
   const authToken = process.env.TWILIO_AUTH_TOKEN;
   const client = require('twilio')(accountSid, authToken);
 var msgid;
+
 client.messages
   .create({
      body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
@@ -44,6 +45,7 @@ client.messages
      to: '+14086934608'
    })
   .then(msgid = message.sid);
+  console.log(msgid)
     return res.status(200).json({ msg: "sent", mid: msgid})
   // } catch (error) {
   // console.error("Error in addPhoneNumber:", error);
