@@ -44,9 +44,17 @@ client.messages
      from: from_number,
      to: '+14086934608'
    })
-  .then(msgid = message.sid);
-  console.log(msgid)
-    return res.status(200).json({ msg: "sent", mid: msgid})
+  .then(message => {
+    // message.sid
+    return res.status(200).json({ msg: "sent", mid: message.sid})
+  })
+  .catch(error => {
+    console.error("Failed to send message:", error);
+      // console.error("Error in sending message:", error);
+  res.status(500).json({ error: "Internal Server Error" });
+ });
+  // console.log(message)
+    
   // } catch (error) {
   // console.error("Error in addPhoneNumber:", error);
   // res.status(500).json({ error: "Internal Server Error" });
