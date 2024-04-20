@@ -44,7 +44,7 @@ client.messages
      to: '+14086934608'
    })
   .then(message => console.log(message.sid));
-  return res.status(200).json({ msg: "sent" });
+  return res.status(200).json({ msg: "sent", mid: message.sid});
   // } catch (error) {
   // console.error("Error in addPhoneNumber:", error);
   // res.status(500).json({ error: "Internal Server Error" });
