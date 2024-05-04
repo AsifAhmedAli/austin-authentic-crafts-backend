@@ -30,8 +30,11 @@ const upload = multer({ storage: storage });
 
 const new_request = (req, res) => {
   // try {
-  // const { name, email, insta_url, songinput } = req.body;
-
+  const { name, email, insta_url, songinput } = req.body;
+  console.log(name)
+  console.log(email)
+  console.log(insta_url)
+  console.log(songinput)
   const from_number = process.env.from_number;
   const accountSid = process.env.TWILIO_ACCOUNT_SID;
   const authToken = process.env.TWILIO_AUTH_TOKEN;
@@ -40,9 +43,9 @@ var msgid;
 
 client.messages
   .create({
-     body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
+     body: `Name: ${name}, Email: ${email}, Instagram URL: ${insta_url}, Song: ${songinput}`,
      from: from_number,
-     to: '+14086934608'
+     to: '+14083372156',
    })
   .then(message => {
     // message.sid
